@@ -1,0 +1,39 @@
+/* APELL — estudo autoral. Camada após quiet.css. */
+:root{--apell-signature:#682d25;--apell-editorial:#eee7dd}
+.hero-grid{border:0;background:var(--apell-editorial)}
+.hero-copy{background:var(--apell-editorial);padding:clamp(24px,3.5vw,54px);position:relative}
+.hero-content{position:relative;z-index:1;max-width:38ch!important}
+.hero-signature{display:flex;align-items:center;gap:9px;margin:0 0 22px;color:var(--muted);font-size:11px;letter-spacing:.1em;font-weight:600}
+.hero-signature img{width:23px;height:23px;object-fit:contain;mix-blend-mode:multiply}
+.hero h1{font-family:var(--brand-heading,Manrope,Arial,sans-serif);font-size:clamp(33px,3.25vw,52px);font-weight:500;line-height:1.10;letter-spacing:-.055em;text-wrap:balance;margin:0 0 18px;color:var(--wine)}
+.hero-content>p:not(.eyebrow){font-size:15px;line-height:1.65;max-width:29ch;margin-bottom:25px}
+.hero .primary{border-radius:2px 15px 2px 2px;gap:22px;min-height:48px;padding-inline:18px}
+.hero-visual:after{display:none;content:none}
+.campaign-tabs button[aria-pressed=true]::after,.filters button[aria-pressed=true]::after{height:2px;border-radius:0 4px 0 0}
+.commerce-categories .section-head h2,.collection .section-head h2{font-family:var(--brand-heading,Manrope,Arial,sans-serif);font-weight:500;letter-spacing:-.035em;text-transform:none;font-size:clamp(27px,2.8vw,40px)}
+.commerce-categories .category-card{border:0}
+.commerce-categories .category-card>div{padding-block:14px 5px}
+.commerce-categories .category-card .icon{width:18px;height:18px;stroke-width:1.6}
+.calm-product .product-title{font-weight:600;letter-spacing:-.012em}
+.calm-product .product-info>.price{font-weight:500}
+.nav-actions .icon,.favorite-card .icon{stroke-width:1.55;stroke-linejoin:round;stroke-linecap:round}
+.footer-brand>a{display:inline-flex;align-items:center;gap:10px}
+.footer-brand>a .footer-signature-mark{width:24px;max-width:24px;height:auto;mix-blend-mode:multiply}
+.footer-brand .footer-about{max-width:30ch}
+@media(max-width:760px){.hero-copy{padding:26px 22px 29px}.hero-signature{margin-bottom:14px}.hero h1{font-size:clamp(31px,8vw,43px)}.hero-content>p:not(.eyebrow){margin-bottom:20px}.commerce-categories .section-head h2,.collection .section-head h2{font-size:29px}.commerce-categories .category-card>div{padding-block:10px 2px}}
+@media(prefers-reduced-motion:reduce){.hero *{animation:none!important;transition:none!important}}
+.hero-content{z-index:auto}
+.brand img,.footer-brand>a img,.hero-signature img{mix-blend-mode:multiply}
+
+/* Fotografia integral: não ampliar, recortar nem esticar. O espaço restante
+   recebe um fundo neutro; no celular a imagem define sua própria altura. */
+.hero-visual{background:var(--apell-editorial);min-height:0}
+.hero-grid .hero-visual>img,.hero-grid .hero-visual>img[data-scene]{object-fit:contain;object-position:center;transform:none!important;transition:none}
+.commerce-categories .category-card img,.commerce-categories .category-card:nth-child(2) img,.commerce-categories .category-card.cap-category img{object-fit:contain;object-position:center;transform:none!important;transition:none}
+.product-grid .calm-product .product-photo img,.product-grid:has(.cap-product):not(:has(.product-card:not(.cap-product))) .calm-product .product-photo img{object-fit:contain;object-position:center;transform:none!important}
+.stage-image img,.stage-image[data-mode="model"] img,.stage-image[data-mode="real"] img,.related-card img,.detail-gallery .detail-thumb img{object-fit:contain;object-position:center;transform:none!important}
+.cap-stage-image[data-lowres="true"] img{object-fit:scale-down}
+@media(max-width:760px){
+ .hero-grid .hero-visual{aspect-ratio:auto;height:auto;min-height:0;display:block}
+ .hero-grid .hero-visual>img,.hero-grid .hero-visual>img[data-scene]{position:static;inset:auto;display:block;width:100%;height:auto;max-height:none;aspect-ratio:auto;object-fit:contain}
+}

@@ -50,3 +50,6 @@ As 15 variações usam as referências existentes em proporção 4:5, sem zoom a
 
 ## Vitrine essencial
 A página inicial contém apenas campanha, categorias e coleção, seguidas do rodapé. Foram retirados Compre o look, Monte seu look e seus controles e inicialização JavaScript; links antigos #looks e #combine redirecionam à coleção. O menu não oferece mais o editorial separado. Espaçamentos entre seções e antes do rodapé aumentados de forma responsiva. Imagens e funções essenciais de compra preservadas.
+
+## Direção autoral APELL
+Aplicada a versão experimental aprovada: assinatura com símbolo original, linguagem de campanha, tratamento tipográfico, botão e ícones refinados. A camada css/autoral.css preserva a estrutura e o fluxo da loja. Fotografias de campanha, categorias, catálogo e detalhes usam enquadramento integral (contain), sem zoom de hover; no celular a campanha assume a proporção original. Imagens e dados comerciais intactos. Em desktop podem aparecer áreas neutras ao redor das imagens para preservar a composição completa.
