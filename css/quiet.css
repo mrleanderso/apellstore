@@ -495,3 +495,37 @@ button:disabled{transform:none!important}
  .footer-inner{padding-top:20px}
 }
 @media(prefers-reduced-motion:reduce){.studio-discovery>summary .icon,.recent-discovery>summary .icon{transition:none}}
+
+/* Auditoria IHC: estados claros, compra direta e consistência entre categorias. */
+.hero-visual .image-caption [hidden],.gallery-nav [hidden]{display:none!important}
+.catalog-photo-switch button{min-height:44px}
+.catalog-photo-switch button[aria-pressed=true]{background:var(--wine);color:#fffaf3}
+.product-card .photo-note{background:#28231f;color:#fff}
+.product-stage .cap-detail-colors{margin:12px 0 18px}
+.cap-detail-colors button{min-height:44px;min-width:44px;padding:8px 10px}
+.stage-copy .field-title small{font-size:12px;color:var(--muted);font-weight:400}
+.request-status{margin-top:12px;padding:12px 14px;border:1px solid var(--line);background:#f5eee5;color:var(--ink);font-size:14px;line-height:1.5}
+.request-status[hidden]{display:none}
+.request-status textarea{width:100%;min-height:140px;font:inherit}
+.request-options{margin-top:10px}
+.request-options summary{min-height:44px;display:flex;align-items:center;cursor:pointer;color:var(--wine);font-size:14px;font-weight:600}
+.request-options .wide{margin:5px 0}
+.request-options .link{min-height:44px;text-decoration:underline}
+.checkout-layout{align-items:start}
+.checkout-summary .checkout-quantity button,.stepper button{min-width:44px;min-height:44px}
+.checkout-remove,.cart-item .link,.stage-copy .link,.search-suggestions button,.product-help,.privacy-trigger{min-height:44px}
+.search-help{margin-top:9px}
+.checkout-form input,.checkout-form select,.checkout-form textarea{font-size:16px}
+#sizeError:empty{display:none}
+.stage-copy .sizes button:focus-visible,.cap-detail-colors button:focus-visible,.checkout-quantity button:focus-visible,.stepper button:focus-visible{outline:2px solid var(--wine);outline-offset:3px}
+@media(max-width:760px){
+ .checkout-layout{display:flex;flex-direction:column;gap:22px}
+ .checkout-summary{order:-1;width:100%}
+ .checkout-form{width:100%}
+ .checkout-summary .checkout-item{grid-template-columns:58px minmax(0,1fr) auto;gap:8px}
+ .checkout-summary .checkout-item img{width:58px}
+ .catalog-photo-switch button{font-size:11px;padding-inline:7px}
+ .mobile-purchase strong{font-size:15px}
+}
+@media(max-width:355px){.catalog-tools{flex-wrap:wrap}.catalog-photo-switch{width:100%}.catalog-photo-switch button{flex:1}.checkout-summary .checkout-item{grid-template-columns:48px minmax(0,1fr)}.checkout-summary .checkout-item>b{grid-column:2;justify-self:start}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}

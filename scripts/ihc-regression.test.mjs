@@ -1,0 +1,20 @@
+// Static and isolated functional regression checks; no network or user data.
+import assert from 'node:assert/strict';
+import {readFile,readdir} from 'node:fs/promises';
+import {test} from 'node:test';
+const s=await readFile('js/shop.js','utf8'),h=await readFile('index.html','utf8'),catalog=JSON.parse(await readFile('data/products.json','utf8'));
+const {products,caps,sizes}=catalog;
+const slug=x=>x.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replaceAll(' ','-');
+const between=(a,b)=>s.slice(s.indexOf(a),s.indexOf(b,s.indexOf(a)+1));
+test('script parses and literal element references exist',()=>{new Function(s);for(const [,id] of s.matchAll(/\$\('([a-zA-Z][a-zA-Z0-9]+)'\)/g))assert.ok(h.includes('id="'+id+'"')||s.includes('id="'+id+'"'),id);const ids=[...h.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);assert.equal(ids.length,new Set(ids).size)});
+const routeText=between('function route(){',"window.addEventListener('hashchange',route);");
+const route=new Function('hash','products','caps','slug',"let calls=[];const location={hash},document={body:{dataset:{}}},history={replaceState:(...a)=>calls.push(['replace',...a])},showHome=(...a)=>calls.push(['home',...a]),selectFilter=(...a)=>calls.push(['filter',...a]),renderCapPage=(...a)=>calls.push(['cap',...a]),renderProductPage=(...a)=>calls.push(['product',...a]),renderCheckout=()=>calls.push(['checkout']),renderFinished=()=>calls.push(['finished']),showProduct=(...a)=>calls.push(['showProduct',...a]),requestAnimationFrame=f=>f(),$=()=>({scrollIntoView:()=>calls.push(['scroll'])}),reduced=()=>true;"+routeText+";route();return calls;");
+for(const [hash,want] of [['#conjuntos',['filter','0',true]],['#camisetas',['filter','1',true]],['#bones',['filter','2',true]],['#colecao',['filter','all']],['#inicio',['filter','all']],['#produto/conjuntos/rosa',['product',0,3]],['#produto/bones/branco',['cap',2]],['#checkout',['checkout']],['#pedido',['checkout']],['#finalizado',['finished']]])test('route '+hash,()=>assert.ok(route(hash,products,caps,slug).some(x=>JSON.stringify(x)===JSON.stringify(want))));
+const variantSource=between('const isVariant=','const $=id=>'),searchSource=between('function matchesSearch(',"$('searchBtn').onclick=");
+const runSearch=new Function('products','caps','sizes',variantSource+"\nconst clean=x=>x.normalize('NFD').replace(/[\\u0300-\\u036f]/g,'').toLowerCase();"+searchSource+"\nreturn {matchesSearch,variantKey};");
+const {matchesSearch,variantKey}=runSearch(products,caps,sizes);
+test('search synonyms, size and cap distinction',()=>{assert.ok(matchesSearch(0,6,['bege']));assert.ok(matchesSearch(1,1,['camisa','verde','m']));assert.ok(matchesSearch(2,0,['acessorio','preto']));assert.ok(!matchesSearch(2,0,['m']));assert.ok(variantKey('2:2'));assert.ok(!variantKey('2:3'))});
+const requestText=between('function requestMessage(','function renderFinished()');
+const req=new Function('products','caps','money','sumLabel',"const itemProduct=x=>x.p===2?{title:'Boné APELL',price:null,colors:caps.map(c=>[c.name,c.file,c.hex])}:products[x.p];const itemPrice=x=>x.p===2?'Sob consulta':money(itemProduct(x).price*x.qty);"+requestText+";return requestMessage;")(products,caps,n=>(n/100).toFixed(2),()=> '129.90 + consulta');
+test('message includes products, sizes, CEP and honest cap pricing',()=>{const msg=req('TEST','Cliente fictício',[{p:0,c:3,s:'M',qty:1},{p:2,c:0,s:'A confirmar',qty:1}],'delivery','00000-000',{city:'Cidade teste',uf:'MT'});assert.match(msg,/Conjunto APELL · Rosa · M/);assert.match(msg,/Boné APELL · Preto — Sob consulta/);assert.match(msg,/CEP: 00000-000/);assert.match(msg,/confirmar disponibilidade/);assert.doesNotMatch(req('TEST','Cliente',[],'pickup','00000-000',{}),/00000-000/)});
+test('all public product entry files exist',async()=>{let count=0;for(const route of ['conjuntos','camisetas','bones'])for(const file of await readdir('p/'+route)){if(!file.endsWith('.html'))continue;count++;const html=await readFile('p/'+route+'/'+file,'utf8');assert.match(html,/data-product-route="produto\//)}assert.equal(count,15)});

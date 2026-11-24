@@ -35,3 +35,9 @@ Menu compacto com grupos e contagens, navegação direta por categoria (inclusiv
 
 ## Simplificação final da vitrine
 Página inicial com quatro seções: campanha, categorias, catálogo e editorial. Campanha inicia em modo manual, com reprodução automática opcional; editorial de looks sempre manual, mantendo variação por sessão. Montagem de look permanece disponível em controle expansível. Histórico recente foi transferido para o rodapé, recolhido por padrão; informações da marca incorporadas ao rodapé. Sorteio só abre mediante clique, mantendo o vencimento anterior. Seis produtos iniciais no filtro geral, com acesso às demais opções. Foram preservados ativos, catálogo, preços, sacola, rotas e checkout.
+
+## Auditoria funcional de IHC
+Fotos reais como padrão, referências de IA explicitamente identificadas; bonés agora têm página de produto, favoritos e histórico como as roupas. Filtros sincronizados com hash e histórico; links de entrada são normalizados para manter a navegação no mesmo documento. Checkout reúne revisão de itens, dados e envio ao WhatsApp, com copiar/PDF e limpeza da sacola opcionais. O envio não é verificado pelo site. Nome e CEP ficam apenas em memória (sem persistência após recarga); limpeza explícita também zera o estado em memória e remove chaves locais. Busca inclui sinônimos, cores e tamanhos indicativos, sem inferir estoque. Preços, medidas oficiais, disponibilidade e políticas permanecem dependentes da marca. Não foi adicionado chatbot nem serviço de IA em produção. Acessibilidade: alvos de toque, foco e movimento reduzido revisados; conformidade WCAG e testes com usuários ainda não demonstrados.
+
+### Testes de regressão
+Execute `node --test scripts/ihc-regression.test.mjs` na raiz. Os testes cobrem análise de sintaxe, referências de elementos, rotas isoladas, sinônimos e tamanhos, conteúdo de solicitação e páginas de entrada. Não simulam o DOM completo, o WhatsApp nem tecnologias assistivas.
