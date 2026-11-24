@@ -66,3 +66,6 @@ As quatro campanhas compartilham uma janela 16:9 em desktop e celular, com objec
 
 ## Experiência de escolha e retorno
 Os cards registram apenas na entrada de histórico da navegação a categoria, a expansão do catálogo, a posição de rolagem e a chave do produto. Voltar pelo navegador ou pelo link na página da peça restaura o contexto quando a entrada de histórico é válida. Acesso direto ou via busca continua com retorno à categoria. Detalhes, cuidados, entrega/pagamento e trocas ficam em elementos details nativos, fechados por padrão. Nenhuma política, composição percentual, estoque ou medida foi inventada. Mudanças de tamanho não remontam a galeria; o contato pelo WhatsApp inclui cor e tamanho escolhidos. Sacola sem contador fictício de etapas, busca vazia com recuperação. Sem alteração de dados ou imagens, sem integração externa.
+
+## Preferência de pagamento
+No checkout há um seletor opcional: combinar com a loja (padrão), Pix, cartão de crédito ou débito. São preferências do cliente, não métodos confirmados pela marca. A escolha entra na mensagem de solicitação (também no resumo/copiar), faz parte da referência do pedido e fica somente em memória até recarregar ou limpar dados. Não há cobrança, coleta de cartão, Pix automático, integração de pagamento ou promessa de aceitação.

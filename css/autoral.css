@@ -74,3 +74,11 @@
 .motion-crumb [data-return-catalog]{display:inline-flex;align-items:center;gap:6px;min-height:44px;color:var(--wine)}
 .search-reset{min-height:44px;text-decoration:underline;text-underline-offset:3px;color:var(--wine)}
 @media(max-width:760px){.product-information{margin-top:18px}.product-information summary,.product-information details p{font-size:14px}.motion-crumb{flex-wrap:wrap;gap:5px 9px}}
+
+/* Payment preference only: no payment collection or gateway. */
+.checkout-form .payment-preference{display:grid;gap:6px;margin:18px 0 12px}
+.checkout-form .payment-preference label{margin:0}
+.checkout-form .payment-preference select{width:100%;min-height:48px;padding:10px 14px;border:1px solid var(--line);border-radius:var(--apell-corner);background:var(--white);color:var(--ink);font:inherit}
+.checkout-form .payment-preference select:focus-visible{outline:2px solid var(--wine);outline-offset:3px}
+.checkout-form .payment-preference .note{margin:0;line-height:1.5}
+@media(max-width:760px){.checkout-form .payment-preference select{font-size:16px}}
