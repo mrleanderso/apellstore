@@ -29,3 +29,6 @@ A exibição utiliza encaixe integral (contain), fundos neutros, espaçamento pa
 
 ## Identidade APELL — categorias e tipografia
 Três novas imagens editoriais ilustrativas, separadas em WebP de 960 × 720, com símbolo e nome APELL representados nas peças. As fotos de categoria antigas e as fotografias reais de produto permanecem no repositório. A tipografia dos títulos utiliza Manrope com fallback DM Sans, inspirada na geometria do wordmark, sem se apresentar como a fonte oficial da marca. As páginas de produto foram regeneradas. A representação da marca e do corte nas imagens geradas é aproximada e deve ser validada pelo lojista.
+
+## Acabamento e revisão crítica
+Menu compacto com grupos e contagens, navegação direta por categoria (inclusive links recarregáveis), botão com geometria sutil inspirada na marca, cards com informação reduzida, lista de categorias até 480 px, ações de 44–48 px e foco/rolagem ajustados. As imagens de categoria foram inspecionadas: nome e símbolo APELL aparecem, porém o bordado gerado por IA é aproximado e as margens já estão no arquivo. Mantivemos a identificação ilustrativa e o enquadramento integral. Sacola e resumo usam recortes originais para bonés. Nenhum preço ou ativo foi alterado. Testes estáticos e de roteamento isolado não substituem auditoria visual e acessibilidade em dispositivos reais.
