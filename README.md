@@ -31,3 +31,20 @@ Editorial com pontos clicáveis, combinação de conjunto e camiseta com tamanho
 - A sacola anterior pode ser recuperada por sete dias no mesmo navegador. Somente itens e referência são armazenados; nome e endereço ficam em memória até a finalização.
 - Resumo PDF gerado localmente, referência aleatória, sem banco de dados ou e-mail.
 - Pop-up com largura limitada ao viewport.
+
+## Editorial atualizado
+Quatro cenas na galeria, com campanha de camisetas e bonés geradas como referências editoriais a partir da identidade da APELL. Os modelos e as marcas bordadas são ilustrativos; valide com a marca. A logo oficial do site, as imagens originais do catálogo, as referências dos bonés e a arte oficial do sorteio permanecem intactas.
+
+## Revisão fotográfica
+- Primeira cena preservada; segunda cena com modelos em verde profundo e azul royal, terceira com camiseta verde-oliva em uso, quarta com os bonés da campanha anterior.
+- Fotografia editorial ameixa diferente na seção de looks; pontos clicáveis reposicionados. Categorias usam composições de produtos distintas da galeria.
+- Novas referências editoriais geradas por IA são ilustrativas, não fotos oficiais de pessoas vestindo as peças reais. Imagens reais do catálogo, logotipo e sorteio preservados. Valide cor, corte, marca e acabamento com a loja antes de publicar.
+
+## Catálogo editorial — atualização final
+- 12 novas referências de vestibilidade para os oito conjuntos e quatro camisetas. As imagens do catálogo são identificadas como ilustrativas; cada página de produto abre na foto original e permite alternar para a foto no corpo.
+- A logo original do site permanece idêntica. Nas camisetas geradas, aplicação ilustrativa do desenho da marca original, com posição e proporção aproximadas.
+- Três referências de bonés receberam ajuste de nitidez e resolução de apresentação; os recortes originais permanecem disponíveis. Não são fotografias novas nem detalhes de bordado confirmados.
+- As imagens geradas devem ser aprovadas pela APELL quanto a corte, cor, caimento e acabamento.
+
+### Revisão de marca e fotografia
+- Catálogo 4:5 com logo original aplicada nas referências ilustrativas; três bonés recriados em estúdio, mantendo as fotos anteriores para consulta. Validar as imagens ilustrativas com a marca antes de publicar.
