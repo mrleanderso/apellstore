@@ -56,3 +56,10 @@ Aplicada a versão experimental aprovada: assinatura com símbolo original, ling
 
 ## Padrão das campanhas
 As quatro campanhas compartilham uma janela 16:9 em desktop e celular, com object-fit:contain e sem zoom ou cortes adicionais. Os arquivos existentes permanecem intactos nesta revisão de CSS; fotografias com outras proporções conservam margens neutras.
+
+## Consolidação técnica
+- Catálogo validado pelo mesmo contrato no navegador e na geração de páginas, incluindo ordem completa, rotas, preços, imagens, cores e tamanhos. O formato ainda é versão 1, com índices fixos: não reordenar nem excluir variantes sem migrar a sacola e os favoritos.
+- data/catalog-template.csv é uma base para futura planilha (não há sincronização automática). Preços em centavos; bonés sem valor definido. Não representa estoque.
+- Cards têm um link real para a página pública, com abertura normal na mesma loja e suporte a nova aba. Favorito independente. Navegação por teclado, avisos menores no mobile e falha de catálogo com opção de repetir/contatar.
+- Execute node --test scripts/*.test.mjs; para gerar sitemap e robots.txt, defina APELL_PUBLIC_ORIGIN com o domínio HTTPS oficial e execute node scripts/generate-pages.mjs. Não publique sitemap apontando para domínio de teste. SEO ainda requer domínio oficial e verificação de indexação.
+- Sem integração externa, nova coleta de dados ou alteração de preços. A publicação de fotos novas e a validação visual real continuam pendentes.

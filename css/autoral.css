@@ -49,3 +49,16 @@
  .hero-grid .hero-visual{aspect-ratio:16/9;height:auto;min-height:0}
  .hero-grid .hero-visual>img,.hero-grid .hero-visual>img[data-scene]{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
 }
+
+/* Consolidation: one accessible product link and one independent favorite control. */
+.catalog-piece-link{display:block;color:inherit;text-decoration:none;min-width:0}
+.catalog-piece-link:focus-visible{outline:2px solid var(--wine);outline-offset:4px}
+.catalog-piece-link:hover .product-title{text-decoration:underline;text-underline-offset:3px}
+.catalog-piece-link .product-title{display:block}
+.catalog-piece-link .product-photo{pointer-events:none}
+.app-status .link,.app-status a{color:inherit;text-decoration:underline;text-underline-offset:3px;min-height:44px;display:inline-flex;align-items:center;padding-inline:5px}
+@media(max-width:760px){
+ .catalog-disclosure,.editorial-disclosure,.category-disclosure,.photo-disclosure,.related-disclosure{font-size:12px;line-height:1.55}
+ .campaign-tabs button,.filters button,.filters button[aria-pressed=true]{font-size:12px;min-height:44px}
+ .calm-product .product-info .product-meta{font-size:13px;line-height:1.5}
+}
