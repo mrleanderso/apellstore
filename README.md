@@ -41,3 +41,6 @@ Fotos reais como padrão, referências de IA explicitamente identificadas; boné
 
 ### Testes de regressão
 Execute `node --test scripts/ihc-regression.test.mjs` na raiz. Os testes cobrem análise de sintaxe, referências de elementos, rotas isoladas, sinônimos e tamanhos, conteúdo de solicitação e páginas de entrada. Não simulam o DOM completo, o WhatsApp nem tecnologias assistivas.
+
+## Calm Design — revisão da vitrine
+Campanhas exclusivamente manuais, com quatro botões textuais e estado selecionado por sublinhado, navegação por teclado e gesto de deslizar preservados. Sem miniaturas, contadores, reprodução automática ou timer. Cards com nome, cor, preço e favorito; aviso de IA e de recorte original dos bonés mantido. Filtros textuais, contador único, sem progresso redundante, editorial compacto e sorteio acessível pelo rodapé. A faixa superior não promete entrega sem confirmação. Imagens, preços, catálogo, checkout e configurações preservados. Testes estáticos não substituem verificação visual em navegador.
