@@ -69,3 +69,7 @@ Os cards registram apenas na entrada de histórico da navegação a categoria, a
 
 ## Preferência de pagamento
 No checkout há um seletor opcional: combinar com a loja (padrão), Pix, cartão de crédito ou débito. São preferências do cliente, não métodos confirmados pela marca. A escolha entra na mensagem de solicitação (também no resumo/copiar), faz parte da referência do pedido e fica somente em memória até recarregar ou limpar dados. Não há cobrança, coleta de cartão, Pix automático, integração de pagamento ou promessa de aceitação.
+
+## Catálogo e sacola — refinamentos
+Vitrine mantém cores individuais por padrão; o controle opcional Agrupar por modelo exibe um card por categoria/modelo, com seletor de cor que atualiza imagem, preço, favorito e link. A preferência é em memória e restaurada no contexto de retorno. Erro de imagem de card mostra aviso sem trocar a cor ou apresentar uma imagem enganosa. Na sacola, editar cor/tamanho preserva quantidades, mescla variantes iguais sem ultrapassar 99 unidades e recusa operações que perderiam unidades. Desfazer recupera a última remoção durante a abertura da sacola. Adicionar peça não abre automaticamente a sacola; há confirmação e ação Ver sacola na página. Sem estoque presumido, novas integrações ou alteração de preços. Testes isolados não substituem navegador.
+O compartilhamento de favoritos é explícito e contém somente nomes, cores e links públicos, sem dados do pedido. No limite de 99 unidades, adicionar outra unidade é recusado com mensagem clara.

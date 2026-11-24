@@ -82,3 +82,23 @@
 .checkout-form .payment-preference select:focus-visible{outline:2px solid var(--wine);outline-offset:3px}
 .checkout-form .payment-preference .note{margin:0;line-height:1.5}
 @media(max-width:760px){.checkout-form .payment-preference select{font-size:16px}}
+
+/* Optional grouped catalogue; individual colours remain the default. */
+.catalog-group-toggle{min-height:44px;color:var(--wine);text-align:left;font-size:13px;text-underline-offset:4px}
+.catalog-group-toggle[aria-pressed=true]{text-decoration:underline}
+.catalog-color-picker{margin-top:9px}
+.catalog-color-picker label,.bag-edit-fields label{display:grid;gap:4px;color:var(--muted);font-size:12px}
+.catalog-color-picker select,.bag-edit-fields select{width:100%;min-width:0;min-height:44px;border:1px solid var(--line);border-radius:var(--apell-corner);background:var(--paper);color:var(--ink);font:inherit;padding:6px 9px}
+.catalog-image-unavailable{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:12px;color:var(--muted);font-size:13px}
+.catalog-color-picker select:focus-visible,.bag-edit-fields select:focus-visible,.bag-edit summary:focus-visible{outline:2px solid var(--wine);outline-offset:3px}
+.bag-edit{margin-top:4px}
+.bag-edit summary{cursor:pointer;color:var(--wine);font-size:13px;min-height:44px;line-height:44px}
+.bag-edit-fields{display:grid;gap:8px}
+.bag-edit-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.bag-edit-actions .outline{min-height:44px}
+.bag-edit-fields p:empty{display:none}
+.bag-undo,.added-confirmation{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:10px 0;color:var(--ink);font-size:13px;border-bottom:1px solid var(--line)}
+.bag-undo button,.added-confirmation button{min-height:44px;color:var(--wine);text-decoration:underline;text-underline-offset:3px}
+@media(max-width:760px){.catalog-color-picker select,.bag-edit-fields select{font-size:16px}}
+
+.favorite-share-status:empty{display:none}.favorite-share-status textarea{width:100%;min-height:110px;font:inherit;margin-top:10px}
