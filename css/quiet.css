@@ -659,3 +659,54 @@ footer{border-top:1px solid var(--line)}
  .collection-end{margin-top:28px}
  .footer-inner{padding-top:26px}
 }
+
+/* Spatial rhythm — APELL. Keep related content close; separate independent sections. */
+:root{
+ --apell-content:1440px;
+ --apell-gutter:clamp(32px,5vw,80px);
+ --apell-section-space:clamp(64px,6.2vw,96px);
+ --apell-grid-x:clamp(24px,2.2vw,32px);
+ --apell-grid-y:48px;
+ --apell-heading-gap:24px;
+ --apell-image-gap:16px;
+}
+.wrap,.nav-shell{max-width:var(--apell-content);padding-inline:var(--apell-gutter)}
+.hero{padding-top:clamp(24px,2.5vw,36px)}
+.calm-campaign-bar{padding-top:12px}
+.commerce-categories{margin-top:var(--apell-section-space);margin-bottom:var(--apell-section-space)}
+.commerce-categories .section-head,.collection .section-head{margin-bottom:var(--apell-heading-gap)}
+.commerce-categories .category-grid{gap:var(--apell-grid-x)}
+.commerce-categories .category-card>div{padding-block:14px 12px}
+.collection{padding-top:0;padding-bottom:96px}
+.collection .filter-bar{border-top:0;margin-bottom:8px;padding-block:4px}
+.catalog-tools{margin-bottom:24px}
+.product-grid,.product-grid:has(.cap-product):not(:has(.product-card:not(.cap-product))){column-gap:var(--apell-grid-x);row-gap:var(--apell-grid-y)}
+.calm-product .product-info{padding-top:var(--apell-image-gap);gap:4px}
+.calm-product .product-info>.price{margin-top:4px}
+.collection-end{margin-top:48px}
+.footer-inner{padding-top:48px;padding-bottom:44px;gap:clamp(24px,3vw,44px)}
+.footer-bottom{padding-block:20px}
+@media(min-width:761px) and (max-width:1050px){
+ :root{--apell-gutter:40px;--apell-section-space:64px;--apell-grid-x:24px;--apell-grid-y:40px}
+ .nav-shell{padding-inline:24px}
+ .collection{padding-bottom:80px}
+}
+@media(max-width:760px){
+ :root{--apell-gutter:20px;--apell-section-space:44px;--apell-grid-x:16px;--apell-grid-y:32px;--apell-heading-gap:20px;--apell-image-gap:12px}
+ .nav-shell{padding-inline:12px}
+ .hero{padding-top:16px}
+ .calm-campaign-bar{padding-top:8px}
+ .commerce-categories{margin-top:var(--apell-section-space);margin-bottom:var(--apell-section-space)}
+ .commerce-categories .category-grid{gap:16px}
+ .commerce-categories .category-card>div{padding-block:10px}
+ .collection{padding-top:0;padding-bottom:56px}
+ .catalog-tools{margin-bottom:20px}
+ .collection-end{margin-top:32px}
+ .footer-inner{padding-top:32px;padding-bottom:32px;gap:24px 16px}
+ .footer-bottom{padding-block:16px}
+}
+@media(max-width:355px){
+ .nav-shell{padding-inline:8px}
+ .wrap{padding-inline:16px}
+ .product-grid,.product-grid:has(.cap-product):not(:has(.product-card:not(.cap-product))){column-gap:12px}
+}
