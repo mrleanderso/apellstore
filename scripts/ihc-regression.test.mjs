@@ -33,3 +33,5 @@ test('editing bag preserves quantity and merges matching variants',()=>{const in
 test('undo restores exact quantities and refuses overflow',()=>{const removed={item:{p:0,c:0,s:'M',qty:3},index:0};assert.deepEqual(mutations.undoBagItems([],removed),[removed.item]);assert.deepEqual(mutations.undoBagItems([{...removed.item,qty:2}],removed),[{...removed.item,qty:5}]);assert.equal(mutations.undoBagItems([{...removed.item,qty:98}],removed),null)});
 
 test('catalog group mode can be restored without changing the underlying catalogue',()=>{assert.match(s,/groupedChoices\.set\(p,c\)/);assert.match(s,/groupedChoices\.set\(p,next\)/);assert.match(s,/grouped\?shown\.length/);assert.match(s,/Foto indisponível/)});
+
+test('direct pages defer hidden hero',async()=>{for(const route of ['conjuntos','camisetas','bones'])for(const file of await readdir('p/'+route)){if(!file.endsWith('.html'))continue;const html=await readFile('p/'+route+'/'+file,'utf8');assert.match(html,/id="heroImage"[^>]*loading="lazy" fetchpriority="low"/)}});

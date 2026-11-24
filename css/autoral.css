@@ -102,3 +102,9 @@
 @media(max-width:760px){.catalog-color-picker select,.bag-edit-fields select{font-size:16px}}
 
 .favorite-share-status:empty{display:none}.favorite-share-status textarea{width:100%;min-height:110px;font:inherit;margin-top:10px}
+
+/* Audit: photo failure and narrow-screen feedback. */
+.product-grid .calm-product .product-photo img[hidden]{display:none!important}
+.motion-view[hidden]~.motion-toast{bottom:20px}
+@media(max-width:360px){.campaign-tabs{flex-wrap:wrap;justify-content:flex-start;gap:2px 12px}.catalog-tools{min-width:0}.catalog-color-picker select{max-width:100%}.mobile-purchase>div{overflow-wrap:anywhere}.mobile-purchase .primary{max-width:62%;white-space:normal;line-height:1.35}}
+@media(prefers-reduced-motion:reduce){.added-confirmation,.bag-undo{animation:none!important;transition:none!important}}
