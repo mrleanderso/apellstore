@@ -37,7 +37,7 @@ Quatro cenas na galeria, com campanha de camisetas e bonés geradas como referê
 
 ## Revisão fotográfica
 - Primeira cena preservada; segunda cena com modelos em verde profundo e azul royal, terceira com camiseta verde-oliva em uso, quarta com os bonés da campanha anterior.
-- Fotografia editorial ameixa diferente na seção de looks; pontos clicáveis reposicionados. Categorias usam composições de produtos distintas da galeria.
+- Fotografia editorial rosa na seção de looks, em 1440 × 960; pontos clicáveis correspondem à cor rosa. Categorias usam composições de fotografias originais em preto/areia e turquesa/azul (1200 × 800), distintas da galeria.
 - Novas referências editoriais geradas por IA são ilustrativas, não fotos oficiais de pessoas vestindo as peças reais. Imagens reais do catálogo, logotipo e sorteio preservados. Valide cor, corte, marca e acabamento com a loja antes de publicar.
 
 ## Catálogo editorial — atualização final
@@ -48,3 +48,8 @@ Quatro cenas na galeria, com campanha de camisetas e bonés geradas como referê
 
 ### Revisão de marca e fotografia
 - Catálogo 4:5 com logo original aplicada nas referências ilustrativas; três bonés recriados em estúdio, mantendo as fotos anteriores para consulta. Validar as imagens ilustrativas com a marca antes de publicar.
+
+## Revisão visual
+- Primeira campanha e logo original preservadas.
+- A vitrine inicial inclui conjuntos, camisetas e bonés. Fotos reais continuam disponíveis nas galerias.
+- Imagens de baixa resolução dos bonés não são artificialmente ampliadas; o zoom permanece nas fotos de estúdio.

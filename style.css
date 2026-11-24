@@ -122,3 +122,21 @@ body{font-weight:400;letter-spacing:-.008em}.announcement{height:31px;font-weigh
 .photo-dialog{width:min(94vw,790px);max-width:94vw;max-height:94dvh;padding:14px 18px;overflow:auto;color:var(--ink)}.photo-dialog:not([open]){display:none}.lightbox-head{min-height:42px;display:flex;align-items:center;gap:12px;padding-right:48px;font-size:13px}.lightbox-head>span{color:var(--muted);font-variant-numeric:tabular-nums}.lightbox-head>strong{font-weight:600}.lightbox-view{position:relative;background:#eee7de;height:min(62dvh,620px);overflow:hidden;touch-action:pan-y;display:flex;justify-content:center;align-items:center}.lightbox-view #largePhoto{height:100%;width:100%;max-height:none;max-width:100%;object-fit:contain;display:block}.photo-dialog .lightbox-arrow{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;display:grid;place-items:center;background:var(--white);border:1px solid var(--line);border-radius:50%;color:var(--wine)}.photo-dialog #photoPrev{left:8px;right:auto}.photo-dialog #photoNext{right:8px}.lightbox-thumbs{display:flex;justify-content:center;gap:10px;margin-top:10px}.photo-dialog .lightbox-thumb{position:static;display:flex;align-items:center;gap:9px;min-height:52px;max-width:50%;padding:5px 9px;border:1px solid var(--line);text-align:left;font-size:11px;color:var(--ink)}.photo-dialog .lightbox-thumb[aria-pressed=true]{border-color:var(--wine);background:#eee2d7}.photo-dialog .lightbox-thumb img{width:38px;height:46px;object-fit:cover;flex-shrink:0}.photo-dialog .photo-detail-toggle{box-shadow:none;margin:10px auto 0}.photo-dialog.detail-mode .lightbox-view{display:block;overflow:auto;touch-action:auto}.photo-dialog.detail-mode #largePhoto{width:160%;height:auto;max-width:none;max-height:none}.photo-dialog.detail-mode .lightbox-arrow{display:none}.photo-dialog #closePhoto{z-index:3}.lightbox-thumb:focus-visible,.lightbox-arrow:focus-visible{outline:2px solid var(--wine);outline-offset:2px}
 @media(max-width:720px){.gallery-swipe-hint{display:block;text-align:center;font-size:11px;color:var(--muted);margin-top:9px}.detail-gallery{margin-top:8px}.photo-dialog{padding:10px;width:94vw}.lightbox-view{height:56dvh}.lightbox-head{font-size:12px}.photo-dialog .lightbox-thumb{font-size:10px;padding:4px 6px;gap:6px}.photo-dialog .lightbox-thumb img{width:30px;height:38px}}
 @media(prefers-reduced-motion:reduce){.stage-image img,.detail-thumb img{transition:none}.stage-image:hover img{transform:none}}
+
+/* Revisão de fotografia e legibilidade — 2026-11-24 */
+.category-card,.category-card:nth-child(2){aspect-ratio:3/2;overflow:hidden}
+.category-card:not(.cap-category) img{object-fit:cover;object-position:center}
+.category-card.cap-category img{object-fit:contain;object-position:center 38%;background:#d6bba4}
+.category-card:after{inset:42% 0 0;background:linear-gradient(transparent,#21150fba)}
+.look-photo{aspect-ratio:3/2}
+.look-photo>img{object-position:center}
+.look-photo .pin-top{left:48%;top:45%}
+.look-photo .pin-bottom{left:48%;top:76%}
+.stage-image{aspect-ratio:4/5}
+.stage-image img{object-fit:contain;object-position:center}
+.stage-image[data-mode="model"] img{object-fit:contain}
+.cap-stage-image[data-lowres="true"] img{object-fit:scale-down;transform:none!important}
+.lightbox-view[data-lowres="true"] #largePhoto{object-fit:scale-down}
+.photo-dialog .photo-detail-toggle:disabled{opacity:.5;cursor:not-allowed}
+.detail-gallery .detail-thumb img{aspect-ratio:4/5;object-fit:contain}
+@media(max-width:720px){.stage-image{aspect-ratio:4/5}.category-card,.category-card:nth-child(2){aspect-ratio:3/2}.look-photo{aspect-ratio:3/2}.detail-gallery .detail-thumb img{max-height:132px}}
