@@ -26,3 +26,6 @@ Camada `css/quiet.css` com escala tipográfica contida (abertura até 56 px, se�
 
 ## Fotografia integral e editorial rotativo
 A exibição utiliza encaixe integral (contain), fundos neutros, espaçamento para fotos reais e não aplica zoom automático que recorte as peças. O carrossel de campanha alterna a cada 8 s quando visível; Compre o look apresenta cinco variações com foto editorial e foto real correspondente, alterna a cada 12 s e lembra a última cena na sessão para variar ao recarregar. Ambos permitem pausar, navegar manualmente, respeitam movimento reduzido e suspendem a rotação enquanto há foco, interação, diálogo aberto ou página oculta. Não há edição dos arquivos fotográficos originais; recortes já presentes na fonte permanecem.
+
+## Identidade APELL — categorias e tipografia
+Três novas imagens editoriais ilustrativas, separadas em WebP de 960 × 720, com símbolo e nome APELL representados nas peças. As fotos de categoria antigas e as fotografias reais de produto permanecem no repositório. A tipografia dos títulos utiliza Manrope com fallback DM Sans, inspirada na geometria do wordmark, sem se apresentar como a fonte oficial da marca. As páginas de produto foram regeneradas. A representação da marca e do corte nas imagens geradas é aproximada e deve ser validada pelo lojista.
