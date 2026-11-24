@@ -24,3 +24,10 @@ Editorial com pontos clicáveis, combinação de conjunto e camiseta com tamanho
 ## Campanha de dezembro
 - Bonés: três referências visuais recortadas da arte enviada (preto, cinza e branco), sem preços inventados. Consulta via WhatsApp; não entram na sacola até a loja informar preços e variações oficiais.
 - Sorteio: pop-up na página inicial, uma vez por sessão, reabertura pelo topo, fecha por X, Escape, clique fora ou botão secundário. Expira em 11/12/2026 00h (UTC−4). Link direciona ao perfil oficial, pois a URL da publicação não foi fornecida. Confirmar regras/autorizações com a marca antes de publicar.
+
+## Atualização da jornada de compra
+- Bonés entram na sacola com valor sob consulta (sem preço fictício); o subtotal dos produtos com preço é identificado separadamente.
+- O botão de finalizar só é habilitado após abrir o WhatsApp; o visitante confirma manualmente que enviou. O site não comprova envio ou recebimento.
+- A sacola anterior pode ser recuperada por sete dias no mesmo navegador. Somente itens e referência são armazenados; nome e endereço ficam em memória até a finalização.
+- Resumo PDF gerado localmente, referência aleatória, sem banco de dados ou e-mail.
+- Pop-up com largura limitada ao viewport.
