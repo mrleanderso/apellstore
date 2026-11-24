@@ -11,8 +11,26 @@ const clean=s=>s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
 const scenes=[{file:'editorial.webp',alt:'Modelo com conjunto ameixa APELL em cenário ensolarado',kicker:'01 — Em movimento',title:'Vista seu ritmo.',desc:'Moda esportiva para diferentes momentos da sua rotina.',cta:'Ver coleção',filter:'all',caption:'APELL / EM MOVIMENTO'},{file:'editorial-conjuntos-modelos.webp',alt:'Editorial ilustrativo com duas modelos usando conjuntos verde profundo e azul royal',kicker:'02 — Conjuntos',title:'Conjuntos',desc:'Oito cores para escolher seu próximo conjunto.',cta:'Explorar conjuntos',filter:'0',caption:'APELL / CONJUNTOS'},{file:'editorial-camiseta-oliva.webp',alt:'Editorial ilustrativo com modelo usando camiseta verde-oliva',kicker:'03 — Camisetas',title:'Camisetas dry',desc:'Poliamida dry em quatro cores.',cta:'Explorar camisetas',filter:'1',caption:'APELL / CAMISETAS'},{file:'editorial-bones.webp',alt:'Editorial ilustrativo com dois modelos usando bonés APELL preto e branco',kicker:'04 — Bonés',title:'Bonés',desc:'Três opções para completar seu look.',cta:'Explorar bonés',filter:'2',caption:'APELL / BONÉS'}];
 let scene=0;
 const thumb=$('heroThumbs');scenes.forEach((s,i)=>{const b=document.createElement('button');b.setAttribute('aria-label',`Ver campanha ${i+1}: ${s.caption}`);b.innerHTML=`<img src="img/${s.file}" alt=""><span><small>0${i+1}</small>${["Campanha","Conjuntos","Camisetas","Bonés"][i]}</span>`;b.onclick=()=>setScene(i);thumb.append(b)});
-function setScene(i){scene=(i+scenes.length)%scenes.length;const s=scenes[scene],img=$('heroImage');img.src='img/'+s.file;img.alt=s.alt;img.dataset.scene=scene;$('heroKicker').textContent=s.kicker;$('heroTitle').textContent=s.title;$('heroDesc').textContent=s.desc;$('heroLink').innerHTML=s.cta+' '+icon('arrow');$('heroLink').dataset.filter=s.filter;$('heroCaption').textContent=s.caption;$('heroIndex').textContent=`0${scene+1} — ${String(scenes.length).padStart(2,"0")}`;$('sceneLabel').textContent=`0${scene+1} / ${String(scenes.length).padStart(2,"0")}`;[...thumb.children].forEach((b,j)=>b.setAttribute('aria-pressed',String(j===scene)));[...$('heroProgress').children].forEach((b,j)=>b.classList.toggle('active',j===scene));if(!matchMedia('(prefers-reduced-motion: reduce)').matches){[img,$('heroText')].forEach(el=>el.getAnimations().forEach(a=>a.cancel()));img.animate([{clipPath:'inset(0 100% 0 0)',transform:'scale(1.05)'},{clipPath:'inset(0 0 0 0)',transform:'scale(1)'}],{duration:700,easing:'cubic-bezier(.22,1,.36,1)'});$('heroText').animate([{opacity:0,transform:'translateY(18px)'},{opacity:1,transform:'translateY(0)'}],{duration:520,easing:'cubic-bezier(.22,1,.36,1)'})}}
-$('prevSlide').onclick=()=>setScene(scene-1);$('nextSlide').onclick=()=>setScene(scene+1);setScene(0);
+function setScene(i){scene=(i+scenes.length)%scenes.length;const s=scenes[scene],img=$('heroImage');img.src='img/'+s.file;img.alt=s.alt;img.dataset.scene=scene;$('heroKicker').textContent=s.kicker;$('heroTitle').textContent=s.title;$('heroDesc').textContent=s.desc;$('heroLink').innerHTML=s.cta+' '+icon('arrow');$('heroLink').dataset.filter=s.filter;$('heroCaption').textContent=s.caption;$('heroIndex').textContent=`0${scene+1} — ${String(scenes.length).padStart(2,"0")}`;$('sceneLabel').textContent=`0${scene+1} / ${String(scenes.length).padStart(2,"0")}`;[...thumb.children].forEach((b,j)=>b.setAttribute('aria-pressed',String(j===scene)));[...$('heroProgress').children].forEach((b,j)=>b.classList.toggle('active',j===scene));if(!matchMedia('(prefers-reduced-motion: reduce)').matches){[img,$('heroText')].forEach(el=>el.getAnimations().forEach(a=>a.cancel()));img.animate([{opacity:.45},{opacity:1}],{duration:350,easing:'ease-out'});$('heroText').animate([{opacity:0,transform:'translateY(18px)'},{opacity:1,transform:'translateY(0)'}],{duration:520,easing:'cubic-bezier(.22,1,.36,1)'})}}
+// Accessible rotation: no automatic changes while off-screen, focused, hovered or paused.
+function rotation(root,button,advance,delay){
+ const motion=matchMedia('(prefers-reduced-motion: reduce)');let paused=motion.matches,visible=false,last=Date.now(),touching=false;
+ const sync=()=>{button.textContent=paused?'Reproduzir':'Pausar';button.setAttribute('aria-pressed',String(paused));button.setAttribute('aria-label',paused?'Reproduzir rotação':'Pausar rotação');};
+ const reset=()=>{last=Date.now()};
+ button.onclick=()=>{paused=!paused;reset();sync()};
+ if(motion.addEventListener)motion.addEventListener('change',e=>{if(e.matches){paused=true;sync()}reset()});
+ if('IntersectionObserver' in window){new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;reset()},{threshold:.15}).observe(root)}else visible=true;
+ root.addEventListener('focusin',reset);root.addEventListener('focusout',reset);
+ root.addEventListener('pointerenter',reset);root.addEventListener('pointerleave',reset);
+ root.addEventListener('touchstart',()=>{touching=true;reset()},{passive:true});root.addEventListener('touchend',()=>{touching=false;reset()},{passive:true});root.addEventListener('touchcancel',()=>{touching=false;reset()},{passive:true});
+ document.addEventListener('visibilitychange',reset);
+ setInterval(()=>{if(paused||!visible||document.hidden||touching||root.closest('[hidden]')||document.querySelector('dialog[open]')||root.matches(':focus-within')||(matchMedia('(hover:hover)').matches&&root.matches(':hover'))){reset();return}if(Date.now()-last>=delay){advance();reset()}},500);
+ sync();return reset;
+}
+const heroRoot=$('heroSwipe').closest('.hero'),resetHero=rotation(heroRoot,$('heroPause'),()=>setScene(scene+1),8000);
+heroRoot.querySelector('.hero-content').setAttribute('aria-live','off');
+$('prevSlide').onclick=()=>{setScene(scene-1);resetHero()};$('nextSlide').onclick=()=>{setScene(scene+1);resetHero()};
+thumb.addEventListener('click',resetHero);setScene(0);
 let touch=null;const swipe=$('heroSwipe');swipe.addEventListener('touchstart',e=>{touch=[e.touches[0].clientX,e.touches[0].clientY]},{passive:true});swipe.addEventListener('touchend',e=>{if(!touch)return;const dx=e.changedTouches[0].clientX-touch[0],dy=e.changedTouches[0].clientY-touch[1];if(Math.abs(dx)>55&&Math.abs(dx)>Math.abs(dy)*1.4)setScene(scene+(dx<0?1:-1));touch=null},{passive:true});swipe.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();setScene(scene+(e.key==='ArrowRight'?1:-1))}});
 const palette=$('paletteGroups');products.forEach((product,p)=>{const group=document.createElement('div');group.className='palette-group';group.innerHTML=`<span>${p?'Camisetas':'Conjuntos'}</span><div class="palette-tones">${product.colors.map((c,i)=>`<button style="--tone:${c[2]}" aria-label="Ver ${product.title} em ${c[0]}" title="${c[0]}" data-tone="${i}"><i></i><span>${c[0]}</span></button>`).join('')}</div>`;group.querySelectorAll('button').forEach(b=>b.onclick=()=>showProduct(p,+b.dataset.tone));palette.append(group)});
 let filter='all',expanded=false,photoPreference='model';
@@ -127,6 +145,28 @@ function drawRecent(){const el=$('recentGrid');$('recentSection').hidden=!recent
 function rememberPiece(p,c){const k=`${p}:${c}`;if(recentPieces[0]===k)return;recentPieces=[k,...recentPieces.filter(x=>x!==k)].slice(0,4);try{localStorage.setItem('apell.recent.v1',JSON.stringify(recentPieces))}catch{}drawRecent()}
 $('clearRecent').onclick=()=>{recentPieces=[];try{localStorage.removeItem('apell.recent.v1')}catch{}drawRecent();toast('Histórico limpo.')};drawRecent();
 document.addEventListener('click',e=>{const b=e.target.closest('[data-look]');if(b){const [p,c]=b.dataset.look.split(':').map(Number);showProduct(p,c)}});
+
+// Each look uses its matching catalog variant and real photograph.
+const lookItems=[{p:0,c:3,file:'editorial-look-rosa.webp'},{p:0,c:4},{p:0,c:1},{p:0,c:5},{p:1,c:1}];
+let lookIndex=0;
+try{const prev=Number(sessionStorage.getItem('apell.editorial.index')??'-1');lookIndex=Number.isInteger(prev)?((prev+1)%lookItems.length+lookItems.length)%lookItems.length:0;sessionStorage.setItem('apell.editorial.index',String(lookIndex))}catch{}
+function setLook(i){
+ lookIndex=(i+lookItems.length)%lookItems.length;
+ const entry=lookItems[lookIndex],pr=products[entry.p],co=pr.colors[entry.c],photo=$('lookHeroImage'),real=$('lookRealImage');
+ photo.src=entry.file?'img/'+entry.file:modelImage(co);photo.alt='Imagem editorial ilustrativa: '+pr.title+' em '+co[0];
+ photo.width=entry.file?1440:480;photo.height=entry.file?960:600;
+ real.src=image(co);real.alt='Foto original: '+pr.title+' em '+co[0];
+ $('lookProductName').textContent=(entry.p?'Camiseta dry':'Conjunto')+' — '+co[0];
+ $('lookProductDesc').textContent=(entry.p?'Camiseta em poliamida dry.':'Top e short da mesma cor.')+' Consulte a disponibilidade.';
+ const link=$('lookProductLink');link.dataset.look=entry.p+':'+entry.c;link.innerHTML='Conhecer a peça '+icon('arrow');
+ $('lookCount').textContent=String(lookIndex+1).padStart(2,'0')+' / '+String(lookItems.length).padStart(2,'0');
+ try{sessionStorage.setItem('apell.editorial.index',String(lookIndex))}catch{}
+}
+const resetLook=rotation($('lookCarousel'),$('lookPause'),()=>setLook(lookIndex+1),12000);
+$('lookPrev').onclick=()=>{setLook(lookIndex-1);resetLook()};
+$('lookNext').onclick=()=>{setLook(lookIndex+1);resetLook()};
+setLook(lookIndex);
+
 const studioForm=$('studioForm');$('studioPieces').innerHTML=products.map((pr,p)=>`<div class="studio-piece" id="studioPiece${p}"><div class="studio-image"><img id="studioImg${p}" src="${image(pr.colors[p?1:0])}" alt="" loading="lazy"><span class="studio-num">0${p+1}</span></div><div class="studio-controls"><strong>${pr.title}</strong><label for="studioColor${p}">Cor</label><select id="studioColor${p}" name="color${p}">${pr.colors.map((c,i)=>`<option value="${i}" ${i===(p?1:0)?'selected':''}>${c[0]}</option>`).join('')}</select><label for="studioSize${p}">Tamanho</label><select id="studioSize${p}" name="size${p}" required><option value="">Selecionar</option>${sizes.map(s=>`<option>${s}</option>`).join('')}</select></div></div>`).join('');
 function updateStudio(){products.forEach((pr,p)=>{const c=pr.colors[+$('studioColor'+p).value],img=$('studioImg'+p);const src=image(c);if(img.getAttribute('src')!==src){img.src=src;if(!reduced())img.animate([{opacity:.35,transform:'scale(1.03)'},{opacity:1,transform:'scale(1)'}],{duration:350,easing:'ease-out'})}img.alt=pr.title+' em '+c[0];$('studioPiece'+p).style.setProperty('--look-tone',c[2])});$('studioTotal').textContent=money(products.reduce((n,p)=>n+p.price,0))}
 studioForm.addEventListener('change',updateStudio);studioForm.onsubmit=e=>{e.preventDefault();products.forEach((pr,p)=>insert(p,+$('studioColor'+p).value,$('studioSize'+p).value));toast('Combinação adicionada à sacola.');showBag()};updateStudio();

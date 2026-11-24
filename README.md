@@ -23,3 +23,6 @@ Validar fotos ilustrativas, tabela oficial de medidas, valores, disponibilidade,
 
 ## Revisão visual — Quiet Luxury
 Camada `css/quiet.css` com escala tipográfica contida (abertura até 56 px, seções até 36 px, produtos até 44 px), composição fotográfica dominante, categorias rotuladas abaixo das imagens, menu mais sóbrio, chamadas diretas e controles de toque e foco visível preservados. As 15 páginas são regeneradas com a mesma estrutura. Nenhum ativo de imagem, preço ou fluxo comercial foi modificado nesta revisão. A inspeção estática não substitui testes de acessibilidade, navegador e dispositivos reais.
+
+## Fotografia integral e editorial rotativo
+A exibição utiliza encaixe integral (contain), fundos neutros, espaçamento para fotos reais e não aplica zoom automático que recorte as peças. O carrossel de campanha alterna a cada 8 s quando visível; Compre o look apresenta cinco variações com foto editorial e foto real correspondente, alterna a cada 12 s e lembra a última cena na sessão para variar ao recarregar. Ambos permitem pausar, navegar manualmente, respeitam movimento reduzido e suspendem a rotação enquanto há foco, interação, diálogo aberto ou página oculta. Não há edição dos arquivos fotográficos originais; recortes já presentes na fonte permanecem.
