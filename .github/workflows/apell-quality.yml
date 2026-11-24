@@ -2,13 +2,13 @@ name: APELL - quality checks
 on:
   push:
     branches: [main]
-    paths: ['index.html', 'js/**', 'css/**', 'data/**', 'p/**', 'scripts/**', '.github/workflows/apell-quality.yml']
+    paths: ['index.html', 'js/**', 'css/**', 'data/**', 'p/**', 'scripts/**', 'manifest.webmanifest', 'sw.js', 'offline.html', 'install.html', 'icons/**', '.github/workflows/apell-quality.yml']
   workflow_dispatch:
 permissions:
   contents: read
 jobs:
   checks:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 12
     steps:
       - uses: actions/checkout@v4
