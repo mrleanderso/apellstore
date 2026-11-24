@@ -1,0 +1,169 @@
+{
+  "version": 1,
+  "products": [
+    {
+      "title": "Conjunto APELL",
+      "route": "conjuntos",
+      "price": 12990,
+      "description": "Top e short em conjunto. Explore as cores e consulte a disponibilidade do seu tamanho.",
+      "colors": [
+        [
+          "Ameixa",
+          "917173428",
+          "#653856"
+        ],
+        [
+          "Azul royal",
+          "915762463",
+          "#214794"
+        ],
+        [
+          "Azul acinzentado",
+          "913623633",
+          "#718fa7"
+        ],
+        [
+          "Rosa",
+          "917942432",
+          "#dc829f"
+        ],
+        [
+          "Verde profundo",
+          "916581856",
+          "#305d5c"
+        ],
+        [
+          "Preto",
+          "914887902",
+          "#262327"
+        ],
+        [
+          "Areia",
+          "914551657",
+          "#b8a187"
+        ],
+        [
+          "Marrom",
+          "916725845",
+          "#634638"
+        ]
+      ]
+    },
+    {
+      "title": "Camiseta Poliamida Dry",
+      "route": "camisetas",
+      "price": 6990,
+      "description": "Camiseta de poliamida dry APELL, em quatro cores. Consulte as medidas e a disponibilidade com a loja.",
+      "colors": [
+        [
+          "Azul",
+          "922288098",
+          "#293e78"
+        ],
+        [
+          "Verde-oliva",
+          "916669330",
+          "#63653c"
+        ],
+        [
+          "Turquesa",
+          "921837864",
+          "#088f9e"
+        ],
+        [
+          "Cinza",
+          "916011501",
+          "#726e66"
+        ]
+      ]
+    }
+  ],
+  "caps": [
+    {
+      "name": "Preto",
+      "detail": "Bordado dourado",
+      "file": "cap-preto",
+      "hex": "#202023"
+    },
+    {
+      "name": "Cinza",
+      "detail": "Bordado escuro",
+      "file": "cap-cinza",
+      "hex": "#b9b5b0"
+    },
+    {
+      "name": "Branco",
+      "detail": "Modelo com tela",
+      "file": "cap-branco",
+      "hex": "#f4f1ea"
+    }
+  ],
+  "order": [
+    [
+      0,
+      0
+    ],
+    [
+      1,
+      1
+    ],
+    [
+      2,
+      0
+    ],
+    [
+      0,
+      3
+    ],
+    [
+      1,
+      0
+    ],
+    [
+      0,
+      1
+    ],
+    [
+      0,
+      4
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      0,
+      6
+    ],
+    [
+      2,
+      1
+    ],
+    [
+      0,
+      5
+    ],
+    [
+      1,
+      3
+    ],
+    [
+      0,
+      2
+    ],
+    [
+      0,
+      7
+    ],
+    [
+      2,
+      2
+    ]
+  ],
+  "sizes": [
+    "P",
+    "M",
+    "G",
+    "GG"
+  ]
+}

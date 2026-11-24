@@ -140,3 +140,53 @@ body{font-weight:400;letter-spacing:-.008em}.announcement{height:31px;font-weigh
 .photo-dialog .photo-detail-toggle:disabled{opacity:.5;cursor:not-allowed}
 .detail-gallery .detail-thumb img{aspect-ratio:4/5;object-fit:contain}
 @media(max-width:720px){.stage-image{aspect-ratio:4/5}.category-card,.category-card:nth-child(2){aspect-ratio:3/2}.look-photo{aspect-ratio:3/2}.detail-gallery .detail-thumb img{max-height:132px}}
+
+/* Commerce Experience 2.0 — catálogo e compra mobile */
+.app-status{margin:0;padding:8px 16px;text-align:center;background:var(--paper);font-size:12px;color:var(--wine)}
+.app-status[hidden]{display:none}
+.commerce-categories{margin-top:clamp(22px,4vw,48px);margin-bottom:clamp(24px,4vw,54px)}
+.commerce-categories .section-head{margin-bottom:16px}
+.commerce-categories .section-head h2{font-size:clamp(28px,4vw,48px)}
+.commerce-categories .category-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;align-items:stretch}
+.commerce-categories .category-card,.commerce-categories .category-card:nth-child(2){margin:0;min-height:0;aspect-ratio:2/1;max-height:235px}
+.commerce-categories .category-card h3{font-size:clamp(22px,3vw,38px)}
+.catalog-tools{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin:0 0 18px;flex-wrap:wrap}
+.color-discovery{flex:1;min-width:160px}
+.color-discovery[open]{flex-basis:100%}
+.color-discovery summary,.studio-discovery summary{cursor:pointer;color:var(--wine);font-weight:600;padding:12px 14px;border:1px solid var(--line);background:var(--paper)}
+.color-discovery .palette-section{margin:8px 0 0;padding:0;gap:12px}
+.catalog-photo-switch{display:flex;border:1px solid var(--line);padding:3px;background:var(--paper)}
+.catalog-photo-switch button{font-size:12px;padding:8px 12px;min-height:38px;color:var(--wine)}
+.catalog-photo-switch button[aria-pressed=true]{background:var(--wine);color:white}
+.product-card.original-card .product-photo img{object-fit:contain;background:#eee6dc}
+.product-card.original-card.cap-product .product-photo img{object-fit:scale-down;transform:none!important}
+.studio-discovery{margin-top:32px}
+.studio-discovery summary small{display:block;font-weight:400;font-size:12px;color:var(--muted);margin-top:4px}
+.studio-discovery .studio{margin-top:0;padding-top:24px;border:0}
+.product-description{font-size:14px;line-height:1.65;color:var(--muted);margin:-14px 0 22px}
+.product-help{display:inline-flex;gap:8px;align-items:center;margin:8px 0}
+.mobile-purchase{display:none}
+.privacy-trigger{justify-self:start;text-decoration:underline;text-underline-offset:3px}
+.product-entry-preview{max-width:720px;margin:24px auto;display:grid;gap:18px}
+.product-entry-preview img{max-height:500px;max-width:100%;object-fit:contain;justify-self:start}
+.product-entry-preview h1{font-family:var(--serif);font-size:clamp(32px,6vw,64px);font-weight:400}
+@media(max-width:720px){
+ .commerce-categories .category-grid{gap:7px}
+ .commerce-categories .category-card,.commerce-categories .category-card:nth-child(2){aspect-ratio:4/5;max-height:150px}
+ .commerce-categories .category-card>div{left:8px;right:5px;bottom:9px}
+ .commerce-categories .category-card h3{font-size:clamp(16px,4vw,25px);line-height:1.1}
+ .commerce-categories .category-card>div>span{display:none}
+ .catalog-tools{gap:8px}
+ .catalog-photo-switch button{padding:8px;min-height:44px}
+ .color-discovery{min-width:120px}
+ .color-discovery summary{min-height:44px;padding:12px 8px;font-size:12px}
+ .motion-view:has(.mobile-purchase){padding-bottom:calc(112px + env(safe-area-inset-bottom,0px))}
+ .mobile-purchase{position:fixed;z-index:9;bottom:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--paper);border-top:1px solid var(--line);padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px));box-shadow:0 -6px 24px #30251d12}
+ .mobile-purchase>div{display:grid;gap:3px;min-width:0}
+ .mobile-purchase small{font-size:11px;color:var(--muted)}
+ .mobile-purchase strong{font-size:17px;color:var(--ink)}
+ .mobile-purchase .primary{min-height:48px;flex-shrink:0;font-size:12px;padding:10px 12px}
+ .stage-copy .stage-add{display:none}
+ .motion-view:has(.mobile-purchase)~.motion-toast{bottom:105px}
+}
+@media(prefers-reduced-motion:reduce){.mobile-purchase,.catalog-photo-switch button{transition:none}}
