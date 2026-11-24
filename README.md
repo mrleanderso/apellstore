@@ -47,3 +47,6 @@ Campanhas exclusivamente manuais, com quatro botões textuais e estado seleciona
 
 ## Vitrine fotográfica tranquila
 As 15 variações usam as referências existentes em proporção 4:5, sem zoom automático, filtros de cor ou molduras internas: 8 conjuntos e 4 camisetas no corpo, 3 bonés isolados em estúdio. A vitrine não possui alternador global. Um aviso visível identifica as referências de IA; cada produto abre primeiro a referência ilustrativa e oferece a foto real em miniatura nomeada. Os originais permanecem intocados e acessíveis (bonés: recortes de campanha), inclusive para ampliação. O tratamento é de apresentação e enquadramento, não edição dos pixels nem aumento de resolução. As imagens ilustrativas não comprovam modelagem, cor, logotipo ou acabamento exatos.
+
+## Vitrine essencial
+A página inicial contém apenas campanha, categorias e coleção, seguidas do rodapé. Foram retirados Compre o look, Monte seu look e seus controles e inicialização JavaScript; links antigos #looks e #combine redirecionam à coleção. O menu não oferece mais o editorial separado. Espaçamentos entre seções e antes do rodapé aumentados de forma responsiva. Imagens e funções essenciais de compra preservadas.

@@ -641,3 +641,21 @@ button:disabled{transform:none!important}
  .detail-gallery .detail-thumb strong{font-size:12px}
  .detail-gallery .detail-thumb small{font-size:10px}
 }
+
+/* Final storefront rhythm: campaign, categories, collection, footer. */
+.hero{padding-top:clamp(12px,2vw,26px)}
+.commerce-categories{margin-top:clamp(38px,5vw,76px);margin-bottom:clamp(26px,4vw,56px)}
+.commerce-categories .section-head,.collection .section-head{margin-bottom:clamp(15px,2vw,24px)}
+.collection{padding-top:clamp(12px,2vw,25px);padding-bottom:clamp(52px,7vw,100px)}
+.product-grid{row-gap:clamp(28px,3.2vw,48px)}
+.collection-end{margin-top:clamp(28px,3vw,44px)}
+footer{border-top:1px solid var(--line)}
+.footer-inner{padding-top:clamp(28px,3.5vw,48px)}
+@media(max-width:760px){
+ .hero{padding-top:10px}
+ .commerce-categories{margin-top:32px;margin-bottom:26px}
+ .collection{padding-top:12px;padding-bottom:48px}
+ .product-grid{row-gap:26px}
+ .collection-end{margin-top:28px}
+ .footer-inner{padding-top:26px}
+}
