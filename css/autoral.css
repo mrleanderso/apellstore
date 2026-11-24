@@ -62,3 +62,15 @@
  .campaign-tabs button,.filters button,.filters button[aria-pressed=true]{font-size:12px;min-height:44px}
  .calm-product .product-info .product-meta{font-size:13px;line-height:1.5}
 }
+
+/* Calm product details: useful information remains available on demand. */
+.product-information{margin-top:22px;border-top:1px solid var(--line);width:100%}
+.product-information details{border-bottom:1px solid var(--line)}
+.product-information summary{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:48px;padding:9px 1px;list-style:none;cursor:pointer;color:var(--ink);font-size:14px;font-weight:500}
+.product-information summary::-webkit-details-marker{display:none}
+.product-information summary::after{content:'+';font-size:20px;line-height:1;font-weight:400;color:var(--wine);flex:none}
+.product-information details[open] summary::after{content:'−'}
+.product-information details p{margin:0;padding:0 16px 16px 1px;font-size:14px;line-height:1.65;color:var(--muted);max-width:60ch}
+.motion-crumb [data-return-catalog]{display:inline-flex;align-items:center;gap:6px;min-height:44px;color:var(--wine)}
+.search-reset{min-height:44px;text-decoration:underline;text-underline-offset:3px;color:var(--wine)}
+@media(max-width:760px){.product-information{margin-top:18px}.product-information summary,.product-information details p{font-size:14px}.motion-crumb{flex-wrap:wrap;gap:5px 9px}}
