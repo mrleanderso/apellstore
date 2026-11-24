@@ -37,3 +37,15 @@
  .hero-grid .hero-visual{aspect-ratio:auto;height:auto;min-height:0;display:block}
  .hero-grid .hero-visual>img,.hero-grid .hero-visual>img[data-scene]{position:static;inset:auto;display:block;width:100%;height:auto;max-height:none;aspect-ratio:auto;object-fit:contain}
 }
+
+/* Campaign art direction: identical 16:9 window in all four scenes.
+   Never crop the source: neutral side space is intentional for legacy assets. */
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.78fr) minmax(0,1fr);align-items:center;min-height:0}
+.hero-grid .hero-visual{position:relative;display:block;width:100%;aspect-ratio:16/9;min-height:0;height:auto;background:#e6dbce}
+.hero-grid .hero-visual>img,.hero-grid .hero-visual>img[data-scene]{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;transform:none!important}
+.hero-grid .hero-copy{min-width:0;align-self:stretch;justify-content:center}
+@media(max-width:760px){
+ .hero-grid{display:flex;flex-direction:column;align-items:stretch;min-height:0}
+ .hero-grid .hero-visual{aspect-ratio:16/9;height:auto;min-height:0}
+ .hero-grid .hero-visual>img,.hero-grid .hero-visual>img[data-scene]{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+}

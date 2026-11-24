@@ -53,3 +53,6 @@ A página inicial contém apenas campanha, categorias e coleção, seguidas do r
 
 ## Direção autoral APELL
 Aplicada a versão experimental aprovada: assinatura com símbolo original, linguagem de campanha, tratamento tipográfico, botão e ícones refinados. A camada css/autoral.css preserva a estrutura e o fluxo da loja. Fotografias de campanha, categorias, catálogo e detalhes usam enquadramento integral (contain), sem zoom de hover; no celular a campanha assume a proporção original. Imagens e dados comerciais intactos. Em desktop podem aparecer áreas neutras ao redor das imagens para preservar a composição completa.
+
+## Padrão das campanhas
+As quatro campanhas compartilham uma janela 16:9 em desktop e celular, com object-fit:contain e sem zoom ou cortes adicionais. Os arquivos existentes permanecem intactos nesta revisão de CSS; fotografias com outras proporções conservam margens neutras.
