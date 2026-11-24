@@ -20,3 +20,6 @@ Nome e CEP para consulta de frete, ou consulta de retirada. O ViaCEP é opcional
 
 ## Antes de operar comercialmente
 Validar fotos ilustrativas, tabela oficial de medidas, valores, disponibilidade, políticas de entrega, troca e privacidade com a APELL. As fotos originais dos bonés são recortes de campanha, não fotos de estúdio oficiais. O site não inventa condições comerciais. O sorteio permanece com a data e arte da edição anterior. Sem rastreamento de terceiros adicionado; métricas agregadas dependem de configuração da loja e avaliação de privacidade. Verificar visualização e compartilhamento em dispositivos reais após o deploy.
+
+## Revisão visual — Quiet Luxury
+Camada `css/quiet.css` com escala tipográfica contida (abertura até 56 px, seções até 36 px, produtos até 44 px), composição fotográfica dominante, categorias rotuladas abaixo das imagens, menu mais sóbrio, chamadas diretas e controles de toque e foco visível preservados. As 15 páginas são regeneradas com a mesma estrutura. Nenhum ativo de imagem, preço ou fluxo comercial foi modificado nesta revisão. A inspeção estática não substitui testes de acessibilidade, navegador e dispositivos reais.
