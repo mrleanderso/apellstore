@@ -82,3 +82,6 @@ Manifesto e ícones PNG 192/512 derivados do símbolo oficial, instalação pelo
 
 ## Retorno da sacola
 A ação secundária Continuar comprando fecha a sacola sem navegar ou reconstruir a vitrine; preserva filtros, seleção, URL e posição de rolagem. Quando a sacola é aberta pelo checkout, o rótulo é Voltar ao pedido e os campos não são recriados se não houver alteração; mudanças nos itens atualizam apenas o resumo (sacola vazia mantém o tratamento existente). Sacola vazia também permite voltar, além da ação Explorar coleção. Testes de navegador usam seletor específico para o tamanho do item e cobrem retorno e preservação dos campos.
+
+## Compra rápida na vitrine
+Cada card possui ação secundária Adicionar à sacola independente do link de produto. Roupas expandem seleção local de tamanho e confirmação; bonés adicionam diretamente como valor/medidas sob consulta. Funciona nas cores individuais e no agrupamento. Usa a mesma função insert, respeita limite de 99 unidades e não abre a sacola, não muda URL nem reconstrói catálogo; feedback local e toast, foco preservado ao confirmar/cancelar por teclado. Disponibilidade continua sujeita à confirmação. Testes de navegador verificam compra rápida, boné e preservação da rota, além do fluxo existente.

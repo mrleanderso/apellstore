@@ -26,10 +26,31 @@ try{
   await page.locator('#heroThumbs button').nth(1).click();assert.equal(await page.locator('#heroTitle').textContent(),'Conjuntos');
   await page.locator('.catalog-group-toggle').click();assert.equal(await page.locator('#products .product-card').count(),3);
   await page.locator('#products .product-card').first().locator('select').selectOption('3');assert.match(await page.locator('#products .catalog-piece-link').first().getAttribute('href'),/rosa\.html$/);
+  // Quick add directly from the grouped card, with no navigation or modal.
+  const quick=page.locator('#products .product-card').first().locator('.catalog-quick');
+  await quick.locator('.catalog-quick-action').click();
+  assert.equal(await quick.locator('.catalog-quick-confirm').isDisabled(),true);
+  await quick.locator('[data-quick-size="M"]').click();
+  const quickHash=await page.evaluate(()=>location.hash);
+  await quick.locator('.catalog-quick-confirm').click();
+  assert.equal(await page.evaluate(()=>location.hash),quickHash);
+  assert.equal(await page.locator('#count').textContent(),'1');
+  assert.equal(await page.locator('#panel').evaluate(x=>x.open),false);
+  assert.equal(await quick.locator('.catalog-quick-status').textContent(),'Adicionado · M');
+  await noOverflow(page,'compra rápida '+width);
+  const cap=page.locator('#products .cap-product .catalog-quick');
+  await cap.locator('.catalog-quick-action').click();
+  assert.equal(await page.locator('#count').textContent(),'2');
+  assert.equal(await page.evaluate(()=>location.hash),quickHash);
+  assert.equal(await cap.locator('.catalog-quick-fields').count(),0);
+  // Clear test products before running the existing independent purchase flow.
+  await page.locator('#bagBtn').click();page.once('dialog',dialog=>dialog.accept());await page.locator('#emptyBag').click();
+  await page.locator('#continue').click();await page.locator('#panel').waitFor({state:'hidden'});
   await page.locator('#products .catalog-piece-link').first().click();await page.locator('#productSizes').waitFor();await noOverflow(page,'produto '+width);
   await page.locator('[data-size="M"]').click();await page.locator('[data-photo-mode="real"]').click();assert.equal(await page.locator('#detailZoom').getAttribute('data-mode'),'real');
   if(await page.locator('#mobileAdd').isVisible())await page.locator('#mobileAdd').click();else await page.locator('#addBtn').click();
   assert.equal(await page.locator('#count').textContent(),'1');assert.equal(await page.locator('#panel').evaluate(x=>x.open),false);
+  await page.locator('#bagBtn').scrollIntoViewIfNeeded();
   const beforeBag=await page.evaluate(()=>({hash:location.hash,scroll:window.scrollY}));
   await page.locator('#bagBtn').click();await page.locator('#continue').click();await page.locator('#panel').waitFor({state:'hidden'});await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
   assert.equal(await page.evaluate(()=>location.hash),beforeBag.hash);assert.equal(await page.locator('#count').textContent(),'1');assert.ok(Math.abs(await page.evaluate(()=>window.scrollY)-beforeBag.scroll)<=2,'bag return scroll');

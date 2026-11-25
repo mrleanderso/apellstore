@@ -37,17 +37,47 @@ function clothingCard(p,c){const product=products[p],color=product.colors[c],el=
 function renderProducts(){const all=order.filter(([p])=>filter==='all'||String(p)===filter);const shown=grouped?[...new Set(all.map(([p])=>p))].map(p=>[p,groupedChoices.get(p)??all.find(x=>x[0]===p)[1]]):expanded?all:all.slice(0,6);$('products').replaceChildren(...shown.map(([p,c])=>catalogCard(p,c)));$('resultCount').textContent=grouped?shown.length+(shown.length===1?' modelo':' modelos')+' · '+all.length+' cores':shown.length===all.length?all.length+' opções':shown.length+' de '+all.length+' opções';$('moreBtn').hidden=grouped||all.length<=6;$('moreBtn').innerHTML=(expanded?'Mostrar menos':'Explorar todas as '+all.length+' opções')+' '+icon('arrow');document.querySelectorAll('.filters button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.filter===filter)));document.querySelectorAll('.desktop-nav a[data-filter]').forEach(a=>{const active=a.dataset.filter===filter;a.classList.toggle('active',active);if(active)a.setAttribute('aria-current','true');else a.removeAttribute('aria-current')});}
 
 function capCard(c){const co=caps[c],el=document.createElement('article');el.className='product-card cap-product calm-product';el.innerHTML=`<a class="catalog-piece-link" data-catalog-key="2:${c}" href="${productPath(2,c)}" aria-label="Ver boné APELL ${co.name}, valor sob consulta, imagem ilustrativa"><span class="product-photo"><img src="img/catalog-${co.file}.webp" alt="Referência ilustrativa de estúdio: boné APELL ${co.name}" width="720" height="900" loading="lazy" decoding="async"><span class="calm-sr-only">Imagem ilustrativa por IA. Recorte original disponível nos detalhes.</span></span><div class="product-info"><span class="product-title">Boné APELL</span><div class="product-meta"><span>${co.name}</span></div><span class="price cap-price">Sob consulta</span></div></a><button class="favorite-card" data-fav="2:${c}" aria-label="Salvar boné APELL ${co.name}" aria-pressed="false">${icon('heart')}</button>`;el.querySelector('.catalog-piece-link').onclick=e=>{if(e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||e.button!==0)return;e.preventDefault();showProduct(2,c,true)};return el}
+// Quick purchase is independent of the product link and never rerenders the catalogue.
+function quickPurchase(p,c){
+ const v=variant(p,c),cap=p===2,wrap=document.createElement('div');
+ wrap.className='catalog-quick';
+ const name=v.title+' em '+v.name;
+ const action=document.createElement('button');action.type='button';action.className='catalog-quick-action outline';action.innerHTML=icon('bag')+' <span>Adicionar à sacola</span>';action.setAttribute('aria-label','Adicionar '+name+' à sacola');
+ const status=document.createElement('p');status.className='catalog-quick-status';status.setAttribute('role','status');status.setAttribute('aria-live','polite');
+ const finish=size=>{
+  if(!insert(p,c,size)){status.textContent='Limite de 99 unidades atingido.';return false}
+  status.textContent=cap?'Adicionado à sacola.':'Adicionado · '+size;
+  toast(name+(cap?'':' · '+size)+' adicionado à sacola.');
+  return true;
+ };
+ if(cap){action.onclick=()=>finish('A confirmar');wrap.append(action,status);return wrap}
+ const panelId='quick-size-'+p+'-'+c,fields=document.createElement('div');fields.className='catalog-quick-fields';fields.id=panelId;fields.hidden=true;
+ action.setAttribute('aria-controls',panelId);action.setAttribute('aria-expanded','false');
+ const label=document.createElement('p');label.className='catalog-quick-label';label.textContent='Escolha o tamanho';
+ const group=document.createElement('div');group.className='catalog-quick-sizes';group.setAttribute('role','group');group.setAttribute('aria-label','Tamanho de '+name);
+ const confirm=document.createElement('button');confirm.type='button';confirm.className='primary catalog-quick-confirm';confirm.textContent='Confirmar';confirm.disabled=true;confirm.setAttribute('aria-label','Confirmar adição de '+name);
+ let selected='';
+ for(const size of sizes){const button=document.createElement('button');button.type='button';button.textContent=size;button.dataset.quickSize=size;button.setAttribute('aria-label','Tamanho '+size);button.setAttribute('aria-pressed','false');button.onclick=()=>{selected=size;for(const x of group.children)x.setAttribute('aria-pressed',String(x===button));confirm.disabled=false};group.append(button)}
+ const note=document.createElement('small');note.className='note';note.textContent='Disponibilidade a confirmar.';
+ fields.append(label,group,note,confirm);
+ const setOpen=open=>{fields.hidden=!open;action.setAttribute('aria-expanded',String(open));action.querySelector('span').textContent=open?'Cancelar':'Adicionar à sacola';action.setAttribute('aria-label',open?'Cancelar seleção de '+name:'Adicionar '+name+' à sacola');if(!open){selected='';confirm.disabled=true;for(const x of group.children)x.setAttribute('aria-pressed','false')}};
+ action.onclick=()=>{const open=fields.hidden;if(open)status.textContent='';setOpen(open)};
+ fields.addEventListener('keydown',e=>{if(e.key==='Escape'){e.preventDefault();setOpen(false);action.focus({preventScroll:true})}});
+ confirm.onclick=()=>{if(!sizes.includes(selected))return;if(finish(selected)){setOpen(false);action.focus({preventScroll:true})}};
+ wrap.append(action,fields,status);return wrap;
+}
+
 function catalogCard(p,c){
  const el=p===2?capCard(c):clothingCard(p,c);
  const img=el.querySelector('img'),v=variant(p,c);
  img.addEventListener('error',()=>{if(el.dataset.imageFailed)return;el.dataset.imageFailed='true';img.hidden=true;const message=document.createElement('span');message.className='catalog-image-unavailable';message.textContent='Foto indisponível';el.querySelector('.product-photo').append(message);el.querySelector('.catalog-piece-link').setAttribute('aria-label','Ver '+v.title+' em '+v.name+', foto indisponível')},{once:true});
  if(img.complete&&!img.naturalWidth&&img.currentSrc)img.dispatchEvent(new Event('error'));
- if(!grouped)return el;
+ if(!grouped){el.append(quickPurchase(p,c));return el}
  const picker=document.createElement('div');picker.className='catalog-color-picker';
  const choices=p===2?caps.map(x=>[x.name,x.hex]):products[p].colors.map(x=>[x[0],x[2]]);
  picker.innerHTML='<label>Cor <select aria-label="Cor de '+v.title+'">'+choices.map(([name],i)=>'<option value="'+i+'"'+(i===c?' selected':'')+'>'+name+'</option>').join('')+'</select></label>';
  picker.querySelector('select').onchange=e=>{const next=Number(e.target.value);if(!isVariant(p,next))return;groupedChoices.set(p,next);const replacement=catalogCard(p,next);el.replaceWith(replacement);syncFavorites();replacement.querySelector('select').focus({preventScroll:true})};
- el.append(picker);return el;
+ el.append(picker,quickPurchase(p,c));return el;
 }
 
 function capSearch(c){const co=caps[c],b=document.createElement('button');b.className='search-result';b.innerHTML=`<img src="img/${co.file}.webp" alt="" loading="lazy"><span>Boné APELL<small>${co.name} · Sob consulta</small></span>${icon('arrow')}`;b.onclick=()=>showCap(c);return b}
