@@ -18,7 +18,7 @@ try{
  browser=await chromium.launch({headless:true});
  await mkdir('audit-results',{recursive:true});
  for(const width of [320,390,768,1440]){
-  const ctx=await browser.newContext({viewport:{width,height:900},reducedMotion:'reduce'});
+  const ctx=await browser.newContext({viewport:{width,height:900},reducedMotion:'reduce',serviceWorkers:'block'});
   await ctx.route('**/*',route=>route.request().url().startsWith(origin+'/')?route.continue():route.abort());
   const page=await ctx.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
   await ready(page);assert.equal(await page.locator('#products .product-card').count(),6);await noOverflow(page,'home '+width);
@@ -30,11 +30,15 @@ try{
   await page.locator('[data-size="M"]').click();await page.locator('[data-photo-mode="real"]').click();assert.equal(await page.locator('#detailZoom').getAttribute('data-mode'),'real');
   if(await page.locator('#mobileAdd').isVisible())await page.locator('#mobileAdd').click();else await page.locator('#addBtn').click();
   assert.equal(await page.locator('#count').textContent(),'1');assert.equal(await page.locator('#panel').evaluate(x=>x.open),false);
+  const beforeBag=await page.evaluate(()=>({hash:location.hash,scroll:window.scrollY}));
+  await page.locator('#bagBtn').click();await page.locator('#continue').click();await page.locator('#panel').waitFor({state:'hidden'});await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
+  assert.equal(await page.evaluate(()=>location.hash),beforeBag.hash);assert.equal(await page.locator('#count').textContent(),'1');assert.ok(Math.abs(await page.evaluate(()=>window.scrollY)-beforeBag.scroll)<=2,'bag return scroll');
   await page.locator('#bagBtn').click();await page.locator('.bag-edit summary').click();await page.locator('.bag-edit select').nth(1).selectOption('G');await page.locator('.bag-edit-actions .outline').click();
-  assert.match(await page.locator('.cart-item small').textContent(),/Tamanho G/);
+  assert.match(await page.locator('.cart-item > div > small').textContent(),/Tamanho G/);
   await page.locator('.cart-item button[aria-label^="Remover"]').click();await page.locator('.bag-undo button').click();assert.equal(await page.locator('#count').textContent(),'1');
   await page.locator('#startCheckout').click();await page.locator('#checkoutForm').waitFor();await noOverflow(page,'checkout '+width);
   await page.locator('#orderName').fill('Cliente Teste');await page.locator('input[value="pickup"]').check();await page.locator('#orderPayment').selectOption('pix');
+  await page.locator('#editBag').click();assert.equal((await page.locator('#continue').textContent()).trim(),'Voltar ao pedido');await page.locator('#continue').click();await page.locator('#panel').waitFor({state:'hidden'});assert.equal(await page.locator('#orderName').inputValue(),'Cliente Teste');assert.equal(await page.locator('#orderPayment').inputValue(),'pix');
   // Prevent opening WhatsApp; inspect only the generated link with fictitious data.
   await page.evaluate(()=>{document.getElementById('requestFallback').addEventListener('click',e=>e.preventDefault())});
   await page.locator('#checkoutForm button[type="submit"]').click();const href=await page.locator('#requestFallback').getAttribute('href');assert.ok(href);assert.match(new URL(href).searchParams.get('text'),/Preferência de pagamento: Pix/);assert.match(new URL(href).searchParams.get('text'),/Rosa · G/);
@@ -42,7 +46,7 @@ try{
   await ready(page,'/p/conjuntos/rosa.html');await page.locator('#detailImg').waitFor();assert.match(await page.locator('#colorName').textContent(),/Rosa/);await noOverflow(page,'link direto '+width);
   assert.deepEqual(errors,[]);report.push({width,flow:'ok'});await ctx.close();
  }
- const ctx=await browser.newContext({viewport:{width:390,height:844}});
+ const ctx=await browser.newContext({viewport:{width:390,height:844},serviceWorkers:'block'});
  await ctx.route('**/*',route=>route.request().url().endsWith('/data/products.json')?route.abort():route.request().url().startsWith(origin+'/')?route.continue():route.abort());
  const page=await ctx.newPage();await page.goto(origin);await page.getByRole('button',{name:'Tentar novamente'}).waitFor({timeout:15000});assert.ok(await page.locator('#appStatus a').isVisible());await ctx.close();
  console.log(JSON.stringify({report,catalogFailure:'ok'},null,2));

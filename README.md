@@ -79,3 +79,6 @@ Base 59b541f: 141.688 bytes de CSS, 78.945 bytes de JS e 461.208 bytes de refer�
 
 ## PWA — instalação opcional
 Manifesto e ícones PNG 192/512 derivados do símbolo oficial, instalação pelo menu e rodapé, guia manual para iOS/Android/desktop, abertura standalone quando suportada. O service worker mantém apenas a página de recuperação e um ícone; navegações consultam a rede e falhas exibem reconexão, sem cache de catálogo, preços, pedidos ou checkout. A loja aberta avisa sobre conexão perdida; o envio de WhatsApp é bloqueado quando o navegador informa offline. Sacola/favoritos continuam locais. Sem notificações push, sem solicitação automática de instalação. CI fixada em Ubuntu 24.04 para Playwright 1.56.1; instalação física e WebKit/iOS ainda exigem testes.
+
+## Retorno da sacola
+A ação secundária Continuar comprando fecha a sacola sem navegar ou reconstruir a vitrine; preserva filtros, seleção, URL e posição de rolagem. Quando a sacola é aberta pelo checkout, o rótulo é Voltar ao pedido e os campos não são recriados se não houver alteração; mudanças nos itens atualizam apenas o resumo (sacola vazia mantém o tratamento existente). Sacola vazia também permite voltar, além da ação Explorar coleção. Testes de navegador usam seletor específico para o tamanho do item e cobrem retorno e preservação dos campos.
